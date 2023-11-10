@@ -1,0 +1,17 @@
+version: '3'
+services:
+  metahub:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - '3000:3000'
+
+    healthcheck:
+      test: ["CMD","curl","-l","http://localhost:3000"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
